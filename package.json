@@ -2,7 +2,8 @@
   "name": "discord.js-web-api",
   "version": "0.0.0",
   "description": "A backend framework using express.js and discord.js to facilitate web dashboards for discord bots",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/singularcitrus/discord.js-web-api/issues"
   },
-  "homepage": "https://github.com/singularcitrus/discord.js-web-api#readme"
+  "homepage": "https://github.com/singularcitrus/discord.js-web-api#readme",
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  },
+  "files": [
+    "lib",
+    "LICENSE.md",
+    "README.md"
+  ]
 }
