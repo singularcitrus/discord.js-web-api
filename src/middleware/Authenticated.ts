@@ -1,12 +1,9 @@
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
+import { ExtendedRequest } from "../types";
 import DiscordOAuth2 from "discord-oauth2";
 
-interface _extendedRequest extends Request {
-  user?: any;
-}
-
 export default async function (
-  req: _extendedRequest,
+  req: ExtendedRequest,
   res: Response,
   next: NextFunction
 ) {
