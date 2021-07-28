@@ -12,6 +12,12 @@ export class Client extends Discord.Client {
     this.appOptions = completeOptions(appOptions);
     this.express = express();
 
+    // Load middlewares required
+    this.express.use(Cors());
+    this.express.use(BodyParser.urlencoded({ extended: false }));
+    this.express.use(BodyParser.json());
+
+    // Set up auto startup if required
     if (this.appOptions.autoStartup) {
       this.on("ready", () => {
         // Startup express instance
