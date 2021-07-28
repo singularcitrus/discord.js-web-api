@@ -87,3 +87,8 @@ interface _CompleteOptions extends AppOptions {
 interface _extendedExpress extends Express {
   defaultRouter?: Router;
 }
+
+interface _Credentials {
+  id: string;
+  secret: string;
+}
