@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/singularcitrus/discord.js-web-api#readme",
   "devDependencies": {
+    "@types/express": "^4.17.13",
     "@types/node": "^16.4.3",
     "@types/ws": "^7.4.7",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
