@@ -12,6 +12,7 @@ export default async function (
 
     if (token) {
       req.user = await new DiscordOAuth2().getUser(token);
+      req.user.token = token;
       next();
     } else {
       // Throw local error to bounce down to "Authentication Failed"
