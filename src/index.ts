@@ -1,3 +1,5 @@
-import discord from "discord.js";
+export var defaultLogger: any = console;
 
-new discord.Client();
+export function OverrideDefaultSysOut(newValue: any) {
+  defaultLogger = newValue;
+}
