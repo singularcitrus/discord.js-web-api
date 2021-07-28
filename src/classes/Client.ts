@@ -58,6 +58,11 @@ export class Client extends Discord.Client {
     this.express.defaultRouter?.all("/lib", (req, res) =>
       res.send("discord.js-web-api")
     );
+
+    this.express.defaultRouter?.use(
+      "/auth",
+      auth(this.credentials.id, this.credentials.secret)
+    );
   }
 
   // A function to start up express
