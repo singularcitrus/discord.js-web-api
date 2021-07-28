@@ -59,10 +59,12 @@ export class Client extends Discord.Client {
       res.send("discord.js-web-api")
     );
 
-    this.express.defaultRouter?.use(
-      "/auth",
-      auth(this.credentials.id, this.credentials.secret)
-    );
+    if (!this.appOptions.noAuth) {
+      this.express.defaultRouter?.use(
+        "/auth",
+        auth(this.credentials.id, this.credentials.secret)
+      );
+    }
   }
 
   // A function to start up express
@@ -79,6 +81,7 @@ export interface AppOptions {
   port?: number;
   autoStartup?: boolean;
   rootPath?: string;
+  noAuth?: boolean;
 }
 
 // Internal function to complete all the provided options with their default values
@@ -89,6 +92,7 @@ function completeOptions(options: AppOptions): _CompleteOptions {
     rootPath: options.rootPath
       ? `${options.rootPath.startsWith("/") ? "" : "/"}${options.rootPath}`
       : "",
+    noAuth: !!options.noAuth,
   };
 }
 
@@ -96,6 +100,7 @@ interface _CompleteOptions extends AppOptions {
   port: number;
   autoStartup: boolean;
   rootPath: string;
+  noAuth: boolean;
 }
 
 interface _extendedExpress extends Express {
