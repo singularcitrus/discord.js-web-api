@@ -31,14 +31,18 @@ export class Client extends Discord.Client {
 
     this.appOptions = completeOptions(appOptions);
     this.express = express();
-    this.express.defaultRouter = Router();
-    this.express.use(this.appOptions.rootPath, this.express.defaultRouter);
 
     // Load middlewares required
     this.express.use(Cors());
     this.express.use(BodyParser.urlencoded({ extended: false }));
     this.express.use(BodyParser.json());
 
+    // Create default router
+    this.express.defaultRouter = Router();
+    // Add default router to express
+    this.express.use(this.appOptions.rootPath, this.express.defaultRouter);
+
+    // Load default routes
     this._defaultRoutes();
 
     // Set up auto startup if required
