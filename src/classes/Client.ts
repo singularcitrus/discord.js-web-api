@@ -3,13 +3,31 @@ import express, { Express, Router } from "express";
 import BodyParser from "body-parser";
 import Cors from "cors";
 import { defaultLogger } from "../";
+import auth from "../routers/auth";
 
 export class Client extends Discord.Client {
   private appOptions: _CompleteOptions;
+  private credentials: _Credentials;
   public express: _extendedExpress;
 
-  constructor(discordOptions: ClientOptions, appOptions: AppOptions) {
+  constructor(
+    discordOptions: ClientOptions,
+    credentials: _Credentials,
+    appOptions: AppOptions
+  ) {
     super(discordOptions);
+
+    // Make sure credentials are set
+    if (!credentials) {
+      throw Error("Credentials is undefined");
+    }
+    if (!credentials.id) {
+      throw Error("ID is undefined");
+    }
+    if (!credentials.secret) {
+      throw Error("Client Secret is undefined");
+    }
+    this.credentials = credentials;
 
     this.appOptions = completeOptions(appOptions);
     this.express = express();
