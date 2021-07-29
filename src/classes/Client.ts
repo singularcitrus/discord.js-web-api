@@ -8,7 +8,7 @@ import auth from "../routers/auth";
 export class Client extends Discord.Client {
   private appOptions: _CompleteOptions;
   private credentials: _Credentials;
-  public express: _extendedExpress;
+  public express: _ExtendedExpress;
 
   constructor(
     discordOptions: ClientOptions,
@@ -96,7 +96,7 @@ interface _CompleteOptions extends AppOptions {
   noAuth: boolean;
 }
 
-interface _extendedExpress extends Express {
+interface _ExtendedExpress extends Express {
   defaultRouter?: Router;
 }
 
