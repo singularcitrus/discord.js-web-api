@@ -2,7 +2,7 @@ import Discord, { ClientOptions } from "discord.js";
 import express, { Express, Router } from "express";
 import BodyParser from "body-parser";
 import Cors from "cors";
-import { defaultLogger } from "../";
+import { AppOptions, defaultLogger } from "../";
 import auth from "../routers/auth";
 
 export class Client extends Discord.Client {
@@ -75,13 +75,6 @@ export class Client extends Discord.Client {
       );
     });
   }
-}
-
-export interface AppOptions {
-  port?: number;
-  autoStartup?: boolean;
-  rootPath?: string;
-  noAuth?: boolean;
 }
 
 // Internal function to complete all the provided options with their default values
