@@ -1,18 +1,23 @@
 import Discord, { ClientOptions } from "discord.js";
-import express, { Express, Router } from "express";
+import express, { Router } from "express";
 import BodyParser from "body-parser";
 import Cors from "cors";
-import { AppOptions, defaultLogger } from "../";
+import {
+  AppOptions,
+  defaultLogger,
+  ExtendedExpress,
+  OAuthCredentials,
+} from "../";
 import auth from "../routers/auth";
 
 export class Client extends Discord.Client {
   private appOptions: _CompleteOptions;
-  private credentials: _Credentials;
-  public express: _ExtendedExpress;
+  private credentials: OAuthCredentials;
+  public express: ExtendedExpress;
 
   constructor(
     discordOptions: ClientOptions,
-    credentials: _Credentials,
+    credentials: OAuthCredentials,
     appOptions: AppOptions
   ) {
     super(discordOptions);
@@ -94,13 +99,4 @@ interface _CompleteOptions extends AppOptions {
   autoStartup: boolean;
   rootPath: string;
   noAuth: boolean;
-}
-
-interface _ExtendedExpress extends Express {
-  defaultRouter?: Router;
-}
-
-interface _Credentials {
-  id: string;
-  secret: string;
 }
