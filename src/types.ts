@@ -9,6 +9,7 @@ export interface AppOptions {
   autoStartup?: boolean;
   rootPath?: string;
   noAuth?: boolean;
+  middleware?: any[];
 }
 
 export interface ExtendedExpress extends Express {

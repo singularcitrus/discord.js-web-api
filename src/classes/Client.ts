@@ -47,6 +47,10 @@ export class Client extends Discord.Client {
     // Add default router to express
     this.express.use(this.appOptions.rootPath, this.express.defaultRouter);
 
+    this.appOptions.middleware.forEach((handler: any) => {
+      this.express.use(handler);
+    });
+
     // Load default routes
     this._defaultRoutes();
 
@@ -113,6 +117,7 @@ function completeOptions(options: AppOptions): _CompleteOptions {
       ? `${options.rootPath.startsWith("/") ? "" : "/"}${options.rootPath}`
       : "",
     noAuth: !!options.noAuth,
+    middleware: options.middleware || [],
   };
 }
 
@@ -121,4 +126,5 @@ interface _CompleteOptions extends AppOptions {
   autoStartup: boolean;
   rootPath: string;
   noAuth: boolean;
+  middleware: any[];
 }
