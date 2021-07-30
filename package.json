@@ -1,6 +1,6 @@
 {
   "name": "discord.js-web-api",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A backend framework using express.js and discord.js to facilitate web dashboards for discord bots",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
