@@ -1,7 +1,9 @@
 import { Express, Request, Router } from "express";
+import { Client } from "./classes/Client";
 
 export interface ExtendedRequest extends Request {
   user?: any;
+  client?: Client;
 }
 
 export interface AppOptions {
