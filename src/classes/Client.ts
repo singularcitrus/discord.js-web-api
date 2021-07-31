@@ -56,9 +56,6 @@ export class Client extends Discord.Client {
     // Load default routes
     this._defaultRoutes();
 
-    // Proceed to lock users from modifying default express router
-    this._lockExpress();
-
     // Set up auto startup if required
     if (this.appOptions.autoStartup) {
       this.on("ready", () => {
@@ -81,19 +78,6 @@ export class Client extends Discord.Client {
     }
   }
 
-  private _lockExpress() {
-    // @ts-ignore
-    this.express.all = _expressLocked;
-    // @ts-ignore
-    this.express.use = _expressLocked;
-    // @ts-ignore
-    this.express.get = _expressLocked;
-    // @ts-ignore
-    this.express.post = _expressLocked;
-    // @ts-ignore
-    this.express.put = _expressLocked;
-  }
-
   // A function to start up express
   spawnExpressProcess() {
     this.express.listen(this.appOptions.port, () => {
@@ -102,12 +86,6 @@ export class Client extends Discord.Client {
       );
     });
   }
-}
-
-function _expressLocked(): void {
-  throw Error(
-    "Trying to modify root express router use `express.defaultRouter` instead"
-  );
 }
 
 // Internal function to complete all the provided options with their default values
