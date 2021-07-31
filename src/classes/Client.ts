@@ -9,6 +9,7 @@ import {
   OAuthCredentials,
 } from "../";
 import auth from "../routers/auth";
+import ExposeClient from "../middleware/ExposeClient";
 
 export class Client extends Discord.Client {
   private appOptions: _CompleteOptions;
@@ -41,6 +42,7 @@ export class Client extends Discord.Client {
     this.express.use(Cors());
     this.express.use(BodyParser.urlencoded({ extended: false }));
     this.express.use(BodyParser.json());
+    this.express.use(ExposeClient(this));
 
     // Create default router
     this.express.defaultRouter = Router();
